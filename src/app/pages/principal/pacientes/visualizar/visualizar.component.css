@@ -1,0 +1,22 @@
+span li{
+    list-style-type: none;
+}
+
+a{
+    margin-left: 5px;
+    list-style-type: none;
+    color: #141414;
+    text-decoration: none;   
+}
+
+.fa-trash{
+    color: red;
+}
+
+.fa-edit{
+    color: rgb(2, 110, 11);
+}
+
+.float-left h2{
+    color: #141414;
+}

@@ -1,0 +1,52 @@
+<html>
+  <div class="container">
+      <h2>
+        Cadastro de Convênios/Plano de Saúde:
+      </h2>
+    
+    
+    <form [formGroup]="formPlanoSaude" (ngSubmit)="cadastrar()">
+      
+      <div class="row mb-3">
+        <p class="text-danger">*Campos obrigatórios</p>
+      </div>
+
+      <div class="row mb-3">
+
+          <!-- NOME -->
+        <div class="col-6">
+          <label for="nome" class="form-label h6">Nome<span class="text-danger"> *</span></label>
+          <input type="text" class="form-control form-control-sm" id="nome" formControlName="nome">
+        </div>
+
+      </div>
+
+      <label for="valor_consulta" class="form-label h6">Valor da consulta<span class="text-danger"> *</span></label>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">R$</span>
+        </div>
+        <input id="valor_consulta" type="number" class="form-control col-2" 
+            formControlName="valor_consulta" placeholder="000.00" aria-label="Amount (to the nearest dollar)">
+      </div>
+
+    
+      <div *ngIf="msg" class="alert alert-success" role="alert">
+        {{msg}}
+      </div>
+    
+      <div class="float-left">
+        <button type="submit" class="btn btn-success">Salvar</button>
+      </div>
+      <div class="float-left" style="margin-left: 10px;">
+        <button type="button" class="btn btn-danger" (click)="cancelar()">Cancelar</button>
+      </div>  
+
+      <div class="float-left" style="margin-left: 10px;">
+        <button type="button" class="btn btn-warning" (click)="gerar()">Gerar PDF</button>
+      </div>
+
+    </form>
+    
+  </div>
+</html>

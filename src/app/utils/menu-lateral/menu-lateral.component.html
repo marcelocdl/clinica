@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+  
+    <link rel="stylesheet" href="menu-lateral.component.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  </head>
+  <body>
+    <div class="wrapper">
+            
+      <nav id="sidebar">
+        <div class="title">Dashboard</div>
+        <ul class="list-items">
+
+          <div id="drop" ngbDropdown>
+            <li><a id="dropdownPaciente" ngbDropdownToggle ><i class="fas fa-users"></i>Pacientes</a>
+            <div class="sub-drop" ngbDropdownMenu aria-labelledby="dropdownPaciente">
+              <ul class="sub-menu">
+                <li><a ngbDropdownItem  [routerLink]="['pacientes/adicionar']" routerLinkActive="router-link-active">Cadastrar</a></li>
+                <li><a ngbDropdownItem  [routerLink]="['pacientes/visualizar']" >Visualizar</a></li>
+              </ul>
+            </div>
+          </div>
+          
+          <div id="drop" ngbDropdown>
+            <li><a id="dropdownConsulta" ngbDropdownToggle ><i class="fa fa-book"></i>Consulta</a>
+            <div class="sub-drop" ngbDropdownMenu aria-labelledby="dropdownConsulta">
+              <ul class="sub-menu">
+                <li><a ngbDropdownItem  [routerLink]="['consultas/adicionar']" routerLinkActive="router-link-active">Cadastrar</a></li>
+                <li><a ngbDropdownItem  [routerLink]="['consultas/visualizar']" >Visualizar</a></li>
+              </ul>
+            </div>
+          </div>
+
+
+          <div id="drop" ngbDropdown>
+            <li><a id="dropdownMedico" ngbDropdownToggle ><i class="fas fa-user-md"></i>Convênios</a>
+            <div class="sub-drop" ngbDropdownMenu aria-labelledby="dropdownMedico">
+              <ul class="sub-menu">
+                <li><a ngbDropdownItem  [routerLink]="['planoSaude/adicionar']" routerLinkActive="router-link-active">Cadastrar</a></li>
+                <li><a ngbDropdownItem  [routerLink]="['planoSaude/visualizar']" >Visualizar</a></li>
+              </ul>
+            </div>
+          </div>
+
+
+          <div id="drop" ngbDropdown>
+            <li><a id="dropdownMedico" ngbDropdownToggle ><i class="fas fa-user-md"></i>Médicos</a>
+            <div class="sub-drop" ngbDropdownMenu aria-labelledby="dropdownMedico">
+              <ul class="sub-menu">
+                <li><a ngbDropdownItem  [routerLink]="['medicos/adicionar']" routerLinkActive="router-link-active">Cadastrar</a></li>
+                <li><a ngbDropdownItem  [routerLink]="['medicos/visualizar']" >Visualizar</a></li>
+              </ul>
+            </div>
+          </div>
+          
+          <div id="drop" ngbDropdown>
+            <li><a id="dropdownSecretaria" ngbDropdownToggle ><i class="fas fa-female"></i>Secretárias</a>
+            <div class="sub-drop" ngbDropdownMenu aria-labelledby="dropdownSecretaria">
+              <ul class="sub-menu">
+                <li><a ngbDropdownItem  [routerLink]="['secretarias/adicionar']" routerLinkActive="router-link-active">Cadastrar</a></li>
+                <li><a ngbDropdownItem  [routerLink]="['secretarias/visualizar']" >Visualizar</a></li>
+              </ul>
+            </div>
+          </div>
+
+          
+          <div class="profile">
+            <div id="logout">
+              <a href="/src/app/utils/gerar-pdf/gerar-pdf.component.html">
+                <i class="fas fa-sign-out-alt"></i>
+                Sair
+              </a>
+            </div>
+          </div>
+
+        </ul>
+      </nav>
+    </div>
+  </body>
+</html>
+
+
+<!--
+
+  <li><a href="#"><i class="fas fa-users"></i>Pacientes</a>
+    <ul class="sub-menu">
+      <li><a routerLinkActive="active" [routerLink]="['pacientes/adicionar']" routerLinkActive="router-link-active">Cadastrar</a></li>
+      <li><a routerLinkActive="active" [routerLink]="['pacientes/visualizar']" >Visualizar</a></li>
+    </ul>
+  </li>
+
+
+  <li><a href="#"><i class="fas fa-user-md"></i>Médicos</a>
+    <ul class="sub-menu">
+      <li><a routerLinkActive="active" [routerLink]="['medicos/adicionar']" routerLinkActive="router-link-active">Cadastrar</a></li>
+      <li><a routerLinkActive="active" [routerLink]="['medicos/visualizar']" >Visualizar</a></li>
+    </ul>
+  </li>
+
+  <li><a href="#"><i class="fas fa-female"></i>Secretárias</a>
+    <ul class="sub-menu">
+      <li><a routerLinkActive="active" [routerLink]="['secretarias/adicionar']" routerLinkActive="router-link-active">Cadastrar</a></li>
+      <li><a routerLinkActive="active" [routerLink]="['secretarias/visualizar']" >Visualizar</a></li>
+    </ul>
+  </li>
+
+-->

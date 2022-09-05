@@ -1,0 +1,98 @@
+<html>
+  <div class="container">
+      <h2>
+        Cadastro de Secretaria(o):
+      </h2>
+    
+    
+    <form [formGroup]="formSecretaria" (ngSubmit)="cadastrar()">
+
+
+      <div class="row mb-3">
+          <p class="text-danger">*Campos obrigatórios</p>
+      </div>
+      
+      <div class="row mb-3">
+          <!-- NOME -->
+          <div class="col-6">
+            <label for="nome" class="form-label h6">Nome<span class="text-danger"> *</span></label>
+            <input type="text" class="form-control form-control-sm" id="nome" formControlName="nome">
+          </div>
+
+          <div class="col-6">
+              <label for="cpf" class="form-label h6">CPF<span class="text-danger"> *</span></label>
+              <input type="text" class="form-control form-control-sm" 
+                id="cpf" placeholder="***.***.***-**" mask="000.000.000-00" formControlName="cpf">
+          </div>
+
+      </div>
+
+      <div class="row mb-3">
+
+        <div class="col-6">
+          <label for="genero" class="form-label h6">Gênero</label>
+          <select class="form-control form-control-sm" id="genero" formControlName="genero">
+            <option *ngFor='let genero of generos' [selected]="genero === genero" 
+            [value]="genero.value">{{genero.tipo}}</option>    
+          </select>  
+        </div>
+
+          <div class="col-6">
+            <label for="dt_nasc" class="form-label h6">Data de Nascimento<span class="text-danger"> *</span></label>
+            <input type="text" class="form-control form-control-sm" 
+              id="dt_nasc" placeholder="**/**/****" formControlName="dt_nasc" mask="d0/M0/0000" [dropSpecialCharacters]="false">
+          </div>
+
+      </div>
+
+      <div class="row mb-3">
+          <div class="col-6">
+            <label for="email" class="form-label h6">Email</label>
+            <input type="email" class="form-control form-control-sm" 
+              id="email" placeholder="***********@********" formControlName="email">
+          </div>
+          <div class="col-6">
+            <label for="contato" class="form-label h6">Telefone para Contato<span class="text-danger"> *</span></label>
+            <input type="text" class="form-control form-control-sm" 
+            id="contato" placeholder="(000)00000-0000" mask="(000)00000-0000" formControlName="contato">
+          </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-4">
+            <label for="usuario" class="form-label h6">Usuário<span class="text-danger">*</span></label>
+            <input type="text" class="form-control form-control-sm" placeholder="Usuário para logar no sistema"
+              id="usuario" formControlName="usuario">
+        </div>
+
+        <div class="col-4">
+            <label for="usuario" class="form-label h6">Senha<span class="text-danger">*</span></label>
+            <input class="form-control form-control-sm" 
+              type="password" name="senha" [(ngModel)]="data.senha" formControlName="senha" >
+        </div>
+
+        <div class="col-4">
+            <label for="usuario" class="form-label h6">Confirmar Senha<span class="text-danger">*</span></label>
+            <input class="form-control form-control-sm" type="password" name="confirma_senha" [(ngModel)]="data.confirma_senha" 
+              formControlName="confirma_senha"> <br>
+        
+            <span *ngIf="data.senha != data.confirma_senha" class="text-danger"> Senhas não coincidem </span>
+        </div>
+      </div>
+
+    
+      <div *ngIf="msg" class="alert alert-success" role="alert">
+        {{msg}}
+      </div>
+    
+      <div class="float-left">
+        <button type="submit" class="btn btn-success">Salvar</button>
+      </div>
+      <div class="float-left" style="margin-left: 10px;">
+        <button type="button" class="btn btn-danger" [routerLink]="['/secretarias/visualizar']">Cancelar</button>
+      </div>
+    
+    
+    </form>
+  </div>
+</html>

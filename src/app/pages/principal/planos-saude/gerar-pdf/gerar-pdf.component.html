@@ -1,0 +1,38 @@
+
+<!DOCTYPE html>
+<!-- Created by pdf2htmlEX (https://github.com/pdf2htmlEX/pdf2htmlEX) -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<header>
+    <meta charset="utf-8">
+    <link stylesheed="gerar-component.css">
+</header>
+
+<body>
+    <div id="pageContainer" #pageContainer>
+
+        <div class="box">
+
+            <h1 class="float-center ff2">Clínica Médica</h1>
+            <h2 class="titulo">ATESTADO</h2>
+
+            <p class="l1">Atesto para os devidos fins, que o(a)</p>
+            <p class="l2">Sr(a): NOME_PACIENTE</p>
+            <p class="l2 l3">Portador do CPF: CPF_PACIENTE</p>
+            <p class="l2 l4">esteve em consulta médica na data de DT_CONSULTA. Necessitando o</p>
+            <p class="l2 l5">afastamento de suas atividades durante NUMERO_DIAS dias.</p>
+            <p class="lData">Santa Maria, DT_ATUAL</p>
+            <p class="lEspaco">_______________________________________</p>
+            <p class="lAssinatura">Assinatura/Carimbo</p>
+            <p class="lMedico">Dr(a) NOME_MEDICO</p>
+            <p class="lCrm">Número CRM: NUM_CRM</p>
+
+        </div>        
+
+    </div>
+</body>
+
+</html>
+
+<div style="margin-bottom: 10px; position: absolute;">
+    <button type="button" class="btn btn-warning" (click)="gerar()">Gerar PDF</button>
+</div>

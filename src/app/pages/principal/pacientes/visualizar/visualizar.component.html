@@ -1,0 +1,147 @@
+<link rel="stylesheet" href="visualizar.component.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<div class="card mt-3">
+    <div class="card-header">
+        <div class="float-left">
+            <h2>Pacientes</h2>
+        </div>
+        <div class="float-right">
+            <button type="button" class="btn btn-primary" [routerLink]="['/pacientes/adicionar']">Novo Paciente</button>
+        </div>
+    </div>
+ 
+    <div class="card-body">
+        
+        <!--<div class="col col-lg">
+            <div class="container">
+                <ul class="list-group">
+                    <li class="list-group-item"
+                        [ngClass]="{'active': selectedItem == cliente}"
+                        (click)="listClick($event, cliente)"
+                        *ngFor="let cliente of clientes"
+                        [routerLink]="[cliente.id]">{{ cliente.nome }}</li>
+                </ul>
+            </div>
+        </div> -->
+        
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>#Código</th>
+                <th>Nome</th>
+                <th>CPF</th>
+                <th>Email</th>
+                <th>Contato</th>
+                <th>Editar/Deletar</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let paciente of pacientes; index as i">
+                <td>{{ paciente.id_pessoa }}</td>
+                <td>{{ paciente.nome }}</td>
+                <td>{{ paciente.num_cpf }}</td>
+                <td>{{ paciente.email }}</td>
+                <td>{{ paciente.tel_contato }}</td>
+                <td>
+                    <a (click)="modalEditar(editar, paciente.id_pessoa)"><i class="fas fa-edit fa-lg"></i></a>
+                    <a (click)="modalRemover(remover, paciente.id_pessoa)"><i class="fas fa-trash fa-lg"></i></a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<ng-template #editar>
+   <form [formGroup]="form">
+      <div class="modal-header">
+         <h1 class="modal-title h5">Editar informações de {{ paciente.nome }}</h1>
+         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+            (click)="modalRef?.hide()"></button>
+      </div>
+
+      <div class="modal-body">
+         
+        <div class="row mb-3">
+
+            <!-- NOME -->
+            <div class="col-6">
+               <label for="nome" class="form-label h6">Nome<span class="text-danger"> *</span></label>
+               <input type="text" class="form-control form-control-sm" id="nome" formControlName="nome">
+            </div>
+    
+            <div class="col-6">
+                <label for="cpf" class="form-label h6">CPF<span class="text-danger"> *</span></label>
+                <input type="text" class="form-control form-control-sm" 
+                  id="cpf" placeholder="***.***.***-**" mask="000.000.000-00" formControlName="num_cpf">
+            </div>
+    
+        </div>
+    
+        <div class="row mb-3">
+    
+            <div class="col-6">
+                <label for="genero" class="form-label h6">Gênero</label>
+                <select class="form-control form-control-sm" id="genero" formControlName="genero">
+                  <option *ngFor='let genero of generos' [selected]="genero === genero" 
+                  [value]="genero.value">{{genero.tipo}}</option>    
+                </select>  
+            </div> 
+    
+            <div class="col-6">
+              <label for="dt_nasc" class="form-label h6">Data de Nascimento<span class="text-danger"> *</span></label>
+              <input type="text" class="form-control form-control-sm" 
+                id="dt_nasc" placeholder="**/**/****" formControlName="dt_nascimento" mask="d0/M0/0000" [dropSpecialCharacters]="false">
+            </div>
+    
+        </div>
+    
+        <div class="row mb-3">
+            <div class="col-6">
+              <label for="email" class="form-label h6">Email</label>
+              <input type="email" class="form-control form-control-sm" 
+                id="email" placeholder="***********@********" formControlName="email">
+            </div>
+            <div class="col-6">
+              <label for="contato" class="form-label h6">Telefone para Contato<span class="text-danger"> *</span></label>
+              <input type="text" class="form-control form-control-sm" 
+              id="contato" placeholder="(000)00000-0000" mask="(000)00000-0000" formControlName="tel_contato">
+            </div>
+        </div>
+
+      </div>
+
+      <div class="modal-footer">
+         <div class="row g-2">
+            <div class="col">
+               <button class="btn btn-warning" (click)="editarPaciente()">Editar</button>
+               &nbsp;
+               <button class="btn btn-secondary" (click)="hideModal()">Cancelar</button>
+            </div>
+         </div>
+      </div>
+   </form>
+
+<!--   <app-editar-cliente></app-editar-cliente>-->
+
+</ng-template>
+
+
+<ng-template #remover>
+    <div class="modal-header">
+       <h1 class="modal-title h5">Remover paciente</h1>
+    </div>
+ 
+    <div class="modal-body">
+       Tem certeza que deseja <strong class="text-danger">remover</strong>
+       o paciente <strong>{{ paciente.nome }}</strong> do sistema?
+       <br>Essa ação não poderá ser revertida!
+    </div>
+ 
+    <div class="modal-footer">
+       <button class="btn btn-danger" (click)="removerPaciente()">Sim</button>
+       &nbsp;
+       <button class="btn btn-secondary" (click)="hideModal()">Não</button>
+    </div>
+</ng-template>

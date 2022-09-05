@@ -1,0 +1,39 @@
+<link rel="stylesheet" href="visualizar.component.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<div class="card mt-3">
+    <div class="card-header">
+        <div class="float-left">
+            <h2>Consultas</h2>
+        </div>
+        <div class="float-right">
+            <button type="button" class="btn btn-primary" [routerLink]="['/consultas/adicionar']">Nova Consulta</button>
+        </div>
+    </div>
+ 
+    <div class="card-body">
+        
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>#Código</th>
+                <th>Data Consulta</th>
+                <th>Nome Paciente</th>
+                <th>Nome Médico</th>
+                <th style="text-align: center;">Gerar Atestado</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let consulta of consultas; index as i">
+                <th>{{ consulta.id_consulta }}</th>
+                <td>{{ consulta.dt_consulta }}</td>
+                <td>{{ consulta.paciente?.nome }}</td>
+                <td>{{ consulta.medico?.nome }}</td>
+                
+                <td style="text-align: center; color: darkorange;">
+                    <a (click)="getAtestadoPdf(consulta.id_consulta)"><i class="fa fa-file-pdf fa-lg"></i></a>                  
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

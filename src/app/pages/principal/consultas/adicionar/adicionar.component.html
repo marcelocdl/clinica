@@ -1,0 +1,62 @@
+<html>
+  <div class="container">
+      <h2>
+        Cadastro de Consulta:
+      </h2>
+    
+    
+    <form [formGroup]="formConsulta" (ngSubmit)="cadastrar()">
+
+
+      <div class="row mb-3">
+          <p class="text-danger">*Campos obrigatórios</p>
+      </div>
+      
+      <div class="row mb-3">
+          <!-- Data Consulta -->
+          <div class="col-6">
+            <label for="dt_consulta" class="form-label h6">Data da Consulta:<span class="text-danger"> *</span></label>
+            <input type="date" class="form-control form-control-sm" id="dt_consulta" formControlName="dt_consulta">
+          </div>
+      </div>
+
+      <div class="row mb-3">
+
+        <div class="col-6">
+          <label for="f_paciente" class="form-label h6">Paciente</label>
+          <select class="form-control form-control-sm" id="f_paciente" formControlName="id_paciente">
+            <option *ngFor='let paciente of pacientes' [selected]="paciente === paciente" 
+            [value]="paciente.id_pessoa">{{paciente.nome}}</option>    
+          </select>  
+        </div>
+
+      </div>
+
+      <div class="row mb-3">
+
+        <div class="col-6">
+          <label for="f_medico" class="form-label h6">Médico</label>
+          <select class="form-control form-control-sm" id="f_medico" formControlName="id_medico">
+            <option *ngFor='let medico of medicos' [selected]="medico === medico" 
+            [value]="medico.id_medico">{{medico.nome}}</option>    
+          </select>  
+        </div>
+
+      </div>
+
+    
+      <div *ngIf="msg" class="alert alert-success" role="alert">
+        {{msg}}
+      </div>
+    
+      <div class="float-left">
+        <button type="submit" class="btn btn-success">Salvar</button>
+      </div>
+      <div class="float-left" style="margin-left: 10px;">
+        <button type="button" class="btn btn-danger" [routerLink]="['/consultas/visualizar']">Cancelar</button>
+      </div>
+    
+    
+    </form>
+  </div>
+</html>

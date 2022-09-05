@@ -1,0 +1,106 @@
+<link rel="stylesheet" href="visualizar.component.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<div class="card mt-3">
+    <div class="card-header">
+        <div class="float-left">
+            <h2>Convênios/Planos de Saúde</h2>
+        </div>
+        <div class="float-right">
+            <button type="button" class="btn btn-primary" [routerLink]="['/planoSaude/adicionar']">Novo Convênio/Plano de Saúde</button>
+        </div>
+    </div>
+ 
+    <div class="card-body">
+                
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>#Código</th>
+                <th>Nome</th>
+                <th>Valor da Consulta</th>
+                <th>Editar/Deletar</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let plano of planos; index as i">
+                <td>{{ plano.id_plano_saude }}</td>
+                <td>{{ plano.nome }}</td>
+                <td>{{ plano.valor_consulta | currency:'BRL' }}</td>
+                <td>
+                    <a (click)="modalEditar(editar, plano.id_plano_saude)"><i class="fa fa-edit fa-lg"></i></a>
+                    <a (click)="modalRemover(remover, plano.id_plano_saude)"><i class="fa fa-trash fa-lg"></i></a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<ng-template #editar>
+   <form [formGroup]="form">
+      <div class="modal-header">
+         <h1 class="modal-title h5">Editar informações de {{ plano.nome }}</h1>
+         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+            (click)="modalRef?.hide()"></button>
+      </div>
+
+      <div class="modal-body">
+
+        <div class="row mb-3">
+            <p class="text-danger">*Campos obrigatórios</p>
+        </div>
+         
+        <div class="row mb-3">
+            <!-- NOME -->
+            <div class="col-6">
+               <label for="nome" class="form-label h6">Nome<span class="text-danger"> *</span></label>
+               <input type="text" class="form-control form-control-sm" id="nome" formControlName="nome">
+            </div>    
+        </div>
+    
+        <div class="row mb-3">
+    
+            <div class="col-6">
+              <label for="valor_consulta" class="form-label h6">Valor da Consulta</label>
+              <input type="number" class="form-control form-control-sm" 
+                id="valor_consulta" placeholder="0000.00" formControlName="valor_consulta">
+            </div>
+    
+        </div>
+
+      </div>
+
+      <div class="modal-footer">
+         <div class="row g-2">
+            <div class="col">
+               <button class="btn btn-warning" (click)="editarPlanoSaude()">Editar</button>
+               &nbsp;
+               <button class="btn btn-secondary" (click)="hideModal()">Cancelar</button>
+            </div>
+         </div>
+      </div>
+   </form>
+
+<!--   <app-editar-cliente></app-editar-cliente>-->
+
+</ng-template>
+
+
+<ng-template #remover>
+    <div class="modal-header">
+       <h1 class="modal-title h5">Remover Convênio/Plano de Saúde</h1>
+    </div>
+ 
+    <div class="modal-body">
+       Tem certeza que deseja <strong class="text-danger">remover </strong>
+        <strong> {{ plano.nome }} </strong> do sistema?
+       <br>Essa ação não poderá ser revertida!
+    </div>
+ 
+    <div class="modal-footer">
+       <button class="btn btn-danger" (click)="removerPlanoSaude()">Sim</button>
+       &nbsp;
+       <button class="btn btn-secondary" (click)="hideModal()">Não</button>
+    </div>
+</ng-template>
